@@ -1,0 +1,58 @@
+/*
+ * DTMF_APPLIANCE_CONTROL.cpp
+ *
+ * Created: 9/22/2017 9:47:06 AM
+ *  Author: ndumba mugambi
+ */ 
+#include <avr/io.h>
+void main(void)
+{
+	unsigned int k, h;
+	DDRA=0x00;
+	DDRD=0XFF;
+	PORTD=0xff;
+	while (1)
+	{
+		k =~PINA;
+		h=k & 0x0F;
+		switch (h)
+		{
+			case 0x01:
+			{
+				PORTD=~0x01;
+				break;
+			}
+			case 0x02:
+			{
+				PORTD=~0x02;
+				break;
+			}
+			case 0x03:
+			{
+				PORTD=~0x04;
+				break;
+			}
+			case 0x04:
+			{
+				PORTD=~0x08;
+				break;
+			}
+			case 0x05:
+			{
+				PORTD=~0x10;
+				break;
+			}
+			case 0x0B:
+			{
+				PORTD=~0xFF;
+				break;
+			}
+			case 0x0C:
+			{
+				PORTD=~0x00;
+				break;
+			}
+		}
+	}
+}
+
